@@ -53,7 +53,7 @@ if uploaded_documents:
 
 
 
-    text_splitter3=RecursiveCharacterTextSplitter(chunk_size=3000,chunk_overlap=200)
+    text_splitter3=RecursiveCharacterTextSplitter(chunk_size=5000,chunk_overlap=600)
     chunks3=text_splitter3.split_documents(documents) 
     # vector_store=FAISS.from_documents(documents=chunks3,embedding=embeddings)
     # faiss_semantic_retriever=vector_store.as_retriever()
@@ -129,14 +129,14 @@ if uploaded_documents:
 
     map_prompt_template=PromptTemplate(input_variables=['text'],template=chunks_prompt1)
     final_prompt='''
-    Provide the final summary of the entire Terms and conditions that should be highlighted to the cutomer for taking an informed decision keeping the most important 20 solid points.
+    Provide the final summary of the entire Terms and conditions that should be highlighted to the cutomer for taking an informed and good decision keeping the most important 20 solid points.
     Document:{text}
 
     '''
     final_prompt_template=PromptTemplate(input_variables=['text'],template=final_prompt)
     summary_chain=load_summarize_chain(
     llm=llm,
-    chain_type="map_reduce",
+    chain_type="refine",
     map_prompt=map_prompt_template,
     combine_prompt=final_prompt_template,
     verbose=True
