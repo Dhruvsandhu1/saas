@@ -36,10 +36,10 @@ st.title("Identifying Red flags in a SAAS document")
 st.write("Upload pdf to see the red flags")
 temperature=st.slider("Set your temperature as you require",0.0,1.0,0.7)
 
-llm=ChatGroq(groq_api_key=groq_api_key,model_name="llama3-70b-8192",temperature=temperature)
+llm=ChatGroq(groq_api_key=groq_api_key,model_name="llama-3.1-70b-versatile",temperature=temperature)
 
 #Uploading the pdf
-uploaded_documents=st.file_uploader("Choose A PDf file to upload",type="pdf",accept_multiple_files=True)
+uploaded_documents=st.file_uploader("Choose A Pdf file to upload",type="pdf",accept_multiple_files=True)
 if uploaded_documents:
     documents=[]
     for uploaded_document in uploaded_documents:
