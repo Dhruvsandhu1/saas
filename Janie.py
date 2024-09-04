@@ -136,7 +136,7 @@ if uploaded_documents:
     final_prompt_template=PromptTemplate(input_variables=['text'],template=final_prompt)
     summary_chain=load_summarize_chain(
     llm=llm,
-    chain_type="refine",
+    chain_type="map_reduce",
     map_prompt=map_prompt_template,
     combine_prompt=final_prompt_template,
     verbose=True
